@@ -3,11 +3,14 @@
   flex-direction: column;
   align-items: center;
 
+  &--item, &--name, .Check-out {
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-shadow: 5px 10px 10px #e1e1e1;
+  }
+
   &--item, &--name {
   margin-top: 5vh;
-  border: 1px solid #e1e1e1;
-  border-radius: 5px;
-  box-shadow: 5px 10px 10px #e1e1e1;
   width: 70vw;
   display: flex;
   justify-content: space-between;
@@ -34,5 +37,11 @@
     &--name>*:first-child{
       width: 100px;
       text-align: center;
+    }
+
+    .Check-out {
+      padding: 0 20px 0 20px;
+      background-color: white;
+      margin-bottom: 5vh;
     }
 }
