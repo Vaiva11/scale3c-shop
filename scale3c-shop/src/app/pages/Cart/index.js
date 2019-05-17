@@ -3,48 +3,63 @@ import './index.scss';
 import { ProductCartCard } from "../../components"
 import { connect } from "react-redux";
 
-class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-      error: null
-    }
-  }
+function Cart({ products, updateCartCount }) {
+  const total = products.reduce((result, product) => {
+    return result + product.price * product.cartCount;
+  }, 0);
 
-  render() {
-
-    const { products } = this.state;
-
-    const total = products.reduce((result, product) => {
-      return result + product.price * product.cartCount;
-    }, 0);
-
-    return (
-      <ProductCartCard className="line">
-        {products.map(({ id, name, price, cartCount, image }) => {
-          return (
-            <div key={id} className="line-item">
-              <div>
-                <img src={image} alt={name} />
-                <span>{name}</span>
-              </div>
-              <div>{price}</div>
-              <div>{cartCount}</div>
-              <div>{cartCount * price}</div>
+  return (
+    <ProductCartCard className="Line">
+      <div className="Line--name">
+        <p>Photo</p>
+        <p>Name</p>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Total product price</p>
+        <p>Remove</p>
+      </div>
+      {products.map(({ id, name, price, cartCount, image, updateCartCount }) => {
+        return (
+          <div key={id} className="Line--item">
+            <img src={image} alt={name} />
+            <h3>{name}</h3>
+            <p>{price}</p>
+            <p>{cartCount}</p>
+            <p>{cartCount * price}</p>
+            <div className='Remove-product'>
+              <button
+                type="button"
+                className='Remove-product--button'
+              //onClick={e => updateCartCount(id, e.target.value--)}
+              >
+                ❌
+              </button>
             </div>
-          );
-        })}
-        <div className="Line-total">{`Total: ${total}`}</div>
-      </ProductCartCard>
-    )
-  }
+          </div>
+        );
+      })}
+      <div className="Line-total">{`Total: ${total}`}</div>
+    </ProductCartCard>
+  )
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     products: state.products.filter(product => product.cartCount > 0),
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    updateCartCount: (id, count) =>
+      dispatch({
+        type: "UPDATE_PRODUCT_CART_COUNT",
+        payload: { id, count },
+      }),
+  };
+}
 
-export default Cart;
+function mapStateToProps(state) {
+  return {
+    products: state.products.filter(product => product.cartCount > 0),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
