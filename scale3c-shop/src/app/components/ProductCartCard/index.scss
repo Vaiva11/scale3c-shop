@@ -1,0 +1,24 @@
+.Product-cart-card {
+  margin-top: 5vh;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  box-shadow: 5px 10px 10px #e1e1e1;
+  width: 50vw;
+
+
+    &--image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    img{
+      height: 15vh;
+      border-radius: 5px;
+    }
+
+    .Remove-product {
+      border: none;
+      background-color: white;
+    }
+  }
+}
