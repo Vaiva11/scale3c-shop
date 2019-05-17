@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import { ProductCartCard } from "../../components"
-import { connect } from "react-redux";;
+import { connect } from "react-redux";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -47,23 +47,4 @@ class Cart extends React.Component {
 //   };
 // }
 
-function mapStateToProps(state) {
-  return {
-    error: state.error,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    getProducts: () => dispatch({ type: "FETCH_PRODUCTS" }),
-    getProductsSuccess: payload =>
-      dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload }),
-    getProductsFailure: payload =>
-      dispatch({ type: "FETCH_PRODUCTS_FAILURE", payload }),
-  };
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Cart);
-
+export default Cart;

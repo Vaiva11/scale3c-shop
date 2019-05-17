@@ -13,6 +13,25 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { getProducts, getProductsSuccess, getProductsFailure } = this.props;
+
+    getProducts();
+    fetch("https://boiling-reaches-93648.herokuapp.com/food-shop/products")
+      .then(response => response.json())
+      .then(json => {
+        const products = json.map(product => ({
+          ...product,
+          isFavorite: false,
+          cartCount: 0,
+        }));
+
+        getProductsSuccess(products);
+      })
+      .catch(() => getProductsFailure("Something went wrong"));
+  }
+
+
   render() {
     return (
       <div className="AppLayout">
@@ -31,4 +50,24 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    error: state.error,
+    loading: state.loading,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getProducts: () => dispatch({ type: "FETCH_PRODUCTS" }),
+    getProductsSuccess: payload =>
+      dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload }),
+    getProductsFailure: payload =>
+      dispatch({ type: "FETCH_PRODUCTS_FAILURE", payload }),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
