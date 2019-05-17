@@ -13,23 +13,6 @@ class Shop extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const { getProducts, getProductsSuccess, getProductsFailure } = this.props;
-
-    getProducts();
-    fetch("https://boiling-reaches-93648.herokuapp.com/food-shop/products")
-      .then(response => response.json())
-      .then(json => {
-        const products = json.map(product => ({
-          cartCount: 0,
-        }));
-
-        getProductsSuccess(products);
-      })
-      .catch(() => getProductsFailure("Something went wrong"));
-  }
-
-
   render() {
     const { products, updateCartCount } = this.props;
     return (
@@ -60,11 +43,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getProducts: () => dispatch({ type: "FETCH_PRODUCTS" }),
-    getProductsSuccess: payload =>
-      dispatch({ type: "FETCH_PRODUCTS_SUCCESS", payload }),
-    getProductsFailure: payload =>
-      dispatch({ type: "FETCH_PRODUCTS_FAILURE", payload }),
     updateCartCount: (id, count) =>
       dispatch({
         type: "UPDATE_PRODUCT_CART_COUNT",
