@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import './index.scss';
-import { ProductCard } from "../../components";
+import { ProductCard, Popup } from "../../components";
 
 
 class Shop extends React.Component {
@@ -24,8 +24,10 @@ class Shop extends React.Component {
               {...product}
               updateCartCount={updateCartCount}
             />
+
           ))
         }
+        <Popup></Popup>
       </div>
     )
   }

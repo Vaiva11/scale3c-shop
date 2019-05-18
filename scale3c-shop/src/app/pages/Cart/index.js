@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { ProductCartCard } from "../../components"
+import { ProductCartCard, Popup } from "../../components"
 import { connect } from "react-redux";
 
 class Cart extends React.Component {
@@ -56,6 +56,7 @@ class Cart extends React.Component {
         })}
         <h2 className="Line-total">{`Total: ${total}`}</h2>
         <p>{checkOut}</p>
+        <Popup></Popup>
       </ProductCartCard>
     )
   }
