@@ -9,7 +9,7 @@
     display: flex;
     list-style: none;
     align-items: center;
-    width: 85vw;
+    width: 100vw;
     justify-content: center;
 
     li {
@@ -49,6 +49,21 @@
         width: 100%;
       }
 
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header, .header__nav {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .header {
+    height: 20vh;
+
+    a:after {
+      display: none;
     }
   }
 }

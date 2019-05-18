@@ -36,7 +36,7 @@ class Popup extends React.Component {
         <form id="popup1" class="overlay">
           <div class="popup">
             <h2>Contact us</h2>
-            <a class="close" href="#">&times;</a>
+            <a class="close" href="#">✖️</a>
             <div class="Content">
               <ul>
                 {this.state.conversation.map(item => (
