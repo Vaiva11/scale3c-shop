@@ -1,27 +1,47 @@
-import React, { Component } from 'react';
-import { Chat, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-popup';
+import React from 'react';
+import './index.scss'
 
-class Popup extends Component {
 
-  componentDidMount() {
-    addResponseMessage("Welcome to this awesome chat!");
+class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.updateInput = this.updateInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
-    // Now send the message throught the backend API
-    addResponseMessage('Thank you');
+
+  updateInput(event) {
+    this.setState({ username: event.target.value })
   }
 
+  handleSubmit() {
+    console.log('Your input value is: ' + this.state.username)
+    return <div>thanks</div>
+    //Send state to the server code
+  }
   render() {
     return (
-      <div className="Popup">
-        <Chat
-          handleNewUserMessage={this.handleNewUserMessage}
-          title="My new awesome title"
-          subtitle="And my cool subtitle"
-        />
-      </div>
+      <React.Fragment>
+        <div class="box">
+          <a class="button" href="#popup1">💬</a>
+        </div>
+
+        <form id="popup1" class="overlay">
+          <div class="popup">
+            <h2>Here i am</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+              <p>{this.state.username}</p>
+              <p>{this.handleSubmit()}</p>
+            </div>
+            <input type="text" onClick={this.updateInput}></input>
+            <button type="button" onClick={this.handleSubmit} >send</button>
+          </div>
+        </form>
+      </React.Fragment>
     );
   }
 }
