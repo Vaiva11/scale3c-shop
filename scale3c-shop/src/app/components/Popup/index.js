@@ -6,22 +6,26 @@ class Popup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      value: '',
+      list: [],
     };
-    this.updateInput = this.updateInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  onChangeValue = event => {
+    this.setState({ value: event.target.value });
+  };
 
-  updateInput(event) {
-    this.setState({ username: event.target.value })
-  }
+  onAddItem = () => {
+    this.setState(state => {
+      const list = state.list.concat(state.value);
 
-  handleSubmit() {
-    console.log('Your input value is: ' + this.state.username)
-    return <div>thanks</div>
-    //Send state to the server code
-  }
+      return {
+        list,
+        value: '',
+      };
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -34,11 +38,27 @@ class Popup extends React.Component {
             <h2>Here i am</h2>
             <a class="close" href="#">&times;</a>
             <div class="content">
-              <p>{this.state.username}</p>
-              <p>{this.handleSubmit()}</p>
+              <div>
+                <ul>
+                  {this.state.list.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+
+                <input
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.onChangeValue}
+                />
+                <button
+                  type="button"
+                  onClick={this.onAddItem}
+                  disabled={!this.state.value}
+                >
+                  Add
+                </button>
+              </div>
             </div>
-            <input type="text" onClick={this.updateInput}></input>
-            <button type="button" onClick={this.handleSubmit} >send</button>
           </div>
         </form>
       </React.Fragment>
