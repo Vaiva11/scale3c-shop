@@ -7,7 +7,7 @@ class Popup extends React.Component {
     super(props);
     this.state = {
       value: '',
-      list: [],
+      conversation: [],
     };
   }
 
@@ -17,10 +17,10 @@ class Popup extends React.Component {
 
   onAddItem = () => {
     this.setState(state => {
-      const list = state.list.concat(state.value);
+      const conversation = state.conversation.concat(state.value, <div className='responce'>Thank you for your message</div>);
 
       return {
-        list,
+        conversation,
         value: '',
       };
     });
@@ -35,27 +35,25 @@ class Popup extends React.Component {
 
         <form id="popup1" class="overlay">
           <div class="popup">
-            <h2>Here i am</h2>
+            <h2>Contact us</h2>
             <a class="close" href="#">&times;</a>
-            <div class="content">
-              <div>
-                <ul>
-                  {this.state.list.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-
+            <div class="Content">
+              <ul>
+                {this.state.conversation.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="Content--input">
                 <input
                   type="text"
                   value={this.state.value}
                   onChange={this.onChangeValue}
                 />
                 <button
-                  type="button"
                   onClick={this.onAddItem}
                   disabled={!this.state.value}
                 >
-                  Add
+                  Send
                 </button>
               </div>
             </div>
