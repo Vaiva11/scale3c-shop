@@ -55,6 +55,23 @@
     &--item{
       flex-direction: column;
       padding: 10px 0 10px 0;
+      width: 70vw;
     }
   }
+}
+
+@media (min-width: 480px) and (max-width: 800px) {
+
+  .Line{
+
+    &--name{
+      display: none;
+    }
+    &--item{
+      flex-direction: column;
+      padding: 10px 0 10px 0;
+      width: 50vw;
+    }
+  }
+
 }

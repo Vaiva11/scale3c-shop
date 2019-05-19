@@ -16,6 +16,7 @@ class Shop extends React.Component {
   render() {
     const { products, updateCartCount } = this.props;
     return (
+
       <div className="Products-list" >
         {
           products.map(product => (

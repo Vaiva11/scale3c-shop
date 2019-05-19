@@ -26,18 +26,20 @@ class Popup extends React.Component {
     });
   };
 
+
+
   render() {
     return (
       <React.Fragment>
-        <div class="box">
-          <a class="button" href="#popup1">💬</a>
+        <div className="box">
+          <a className="button" href="#popup1">💬</a>
         </div>
 
-        <form id="popup1" class="overlay">
-          <div class="popup">
+        <form id="popup1" className="overlay">
+          <div className="popup">
             <h2>Contact us</h2>
-            <a class="close" href="#">✖️</a>
-            <div class="Content">
+            <a className="close" href="#">✖️</a>
+            <div className="Content">
               <ul>
                 {this.state.conversation.map(item => (
                   <li key={item}>{item}</li>

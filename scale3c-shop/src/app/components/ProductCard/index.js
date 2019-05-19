@@ -19,30 +19,28 @@ function ProductCard({
         <h3>{name}</h3>
         <p>{`${price}${currencySymbol}`}</p>
         <span id="cartButton">
-
+          🛒
           <input
             type="number"
             min={0}
             onChange={e => updateCartCount(id, e.target.value)}
             value={cartCount}
           />
-          <button type="button" onClick={e => updateCartCount(id, e.target.value++)}>🛒</button>
         </span>
-        <p>cart Count {cartCount}</p>
       </div>
     </div>
   )
 }
 
-// ProductCard.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   image: PropTypes.string.isRequired,
-//   currencySymbol: PropTypes.string.isRequired,
-//   price: PropTypes.string.isRequired,
-//   cartCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-//     .isRequired,
-//   updateCartCount: PropTypes.func.isRequired,
-// };
+ProductCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  cartCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
+  updateCartCount: PropTypes.func.isRequired,
+};
 
 export default ProductCard;

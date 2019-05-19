@@ -13,7 +13,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { products, updateCartCount } = this.props;
+    const { products } = this.props;
 
     const total = products.reduce((result, product) => {
       return result + product.price * product.cartCount;
@@ -21,7 +21,7 @@ class Cart extends React.Component {
 
     const checkOut = total ?
       (<button type="button" className="Check-out"><h2>Check out</h2></button>) :
-      (<div></div>)
+      (<span></span>)
 
 
     return (
