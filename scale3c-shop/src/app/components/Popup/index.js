@@ -40,7 +40,7 @@ class Popup extends React.Component {
             <h2>Contact us</h2>
             <a className="close" href="#">✖️</a>
             <div className="Content">
-              <ul>
+              <ul className="Content--conversation">
                 {this.state.conversation.map(item => (
                   <li key={item}>{item}</li>
                 ))}

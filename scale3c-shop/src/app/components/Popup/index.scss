@@ -67,7 +67,7 @@
     }
         
     &--input{
-    position: absolute;
+    position: fixed;
     bottom: 50px;
 
 
@@ -80,6 +80,13 @@
         color: black;
         font-weight: bold;
       }
+    }
+
+    &--conversation {
+      padding: 0 5px 0 5px;
+      height: 200px;
+      overflow: auto;
+      overflow-wrap: break-word;
     }
   }
 }
